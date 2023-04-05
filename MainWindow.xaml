@@ -1,0 +1,78 @@
+﻿<Window x:Class="WpfTutorialSamples.Rich_text_controls.RichTextEditorSample"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Notepad--" Height="600" Width="1000">
+    
+    <Window.CommandBindings>
+        <CommandBinding Command="ApplicationCommands.Open" Executed="Open_Executed" />
+        <CommandBinding Command="ApplicationCommands.Save" Executed="Save_Executed" />
+        <CommandBinding Command="ApplicationCommands.New" Executed="New_Executed" />
+    </Window.CommandBindings>
+    <Grid>
+
+        <DockPanel>
+            <Menu DockPanel.Dock="Top" FontSize="15">
+                <Menu.Items>
+                    <MenuItem Header="Файл">                        
+                        <MenuItem x:Name="New" Header="Нов" Command="ApplicationCommands.New"/>
+                        <MenuItem x:Name="Open" Header="Отвори" Command="ApplicationCommands.Open" />
+                        <MenuItem x:Name="Save" Header="Запази" Command="ApplicationCommands.Save" />
+                    </MenuItem>
+
+
+                    <MenuItem Header="Изглед">
+                        <MenuItem Header="Увеличи мащаб" Click="Error_Click"/>
+                        <MenuItem Header="Намали мащаб" Click="Error_Click"/>
+                        <MenuItem Header="Възтанови мащаб" Click="Error_Click"/>
+                    </MenuItem>
+
+                    <MenuItem Header="Помощ">
+                        <MenuItem Header="За програмата" x:Name="about" Click="about_Click"/>
+                    </MenuItem>
+
+                </Menu.Items>
+            </Menu>
+
+
+
+
+
+            <ToolBar DockPanel.Dock="Top">
+            <Button Command="ApplicationCommands.Open">
+                    <Image Source="img/folder2.png" Width="32" Height="32" />
+            </Button>
+            <Button Command="ApplicationCommands.Save">
+                <Image Source="img/save.png" Width="32" Height="32" />
+            </Button>
+            <Separator/>
+            <ToggleButton Command="EditingCommands.ToggleBold" Name="btnBold">
+                <Image Source="img/text_bold.png" Width="32" Height="32" />
+            </ToggleButton>
+            <ToggleButton Command="EditingCommands.ToggleItalic" Name="btnItalic">
+                    <Image Source="img/text_itelic.png" Width="32" Height="32" />
+            </ToggleButton>
+            <ToggleButton Command="EditingCommands.ToggleUnderline" Name="btnUnderline">
+                    <Image Source="img/text_underline2.png" Width="32" Height="32" />
+            </ToggleButton>
+            <Separator/>
+                <ComboBox Name="cmbFontFamily" FontSize="25" Width="243" SelectionChanged="cmbFontFamily_SelectionChanged" />
+                <Separator/>
+             <ComboBox Name="cmbFontSize" FontSize="25"  Width="50" IsEditable="True" TextBoxBase.TextChanged="cmbFontSize_TextChanged" />
+        </ToolBar>
+
+                
+                <ScrollViewer>
+                    
+                        <RichTextBox Name="rtbEditor" SelectionChanged="rtbEditor_SelectionChanged" FontSize="20" AcceptsReturn="True" AcceptsTab="True" BorderThickness="0" Height="478" />
+                   
+                </ScrollViewer>
+                
+
+
+        </DockPanel>
+    <TextBlock x:Name="CharCount" Height="25" FontSize="15pt" Width="450" HorizontalAlignment="Left" VerticalAlignment="Bottom" Foreground="White" Background="#FF313131" Text="0 / 2000000000"/>
+    <TextBlock x:Name="Filename" Height="25" FontSize="15pt" Width="1350" VerticalAlignment="Bottom" Margin="679,0,0,0" Foreground="White" OpacityMask="#FFE6E6E6" Background="#FF313131" HorizontalAlignment="Left" TextWrapping="Wrap">Filename:</TextBlock>
+    <TextBlock Height="25" FontSize="15pt" Width="229" VerticalAlignment="Bottom" Margin="450,0,0,0" Background="#FF313131" Foreground="White" HorizontalAlignment="Left">Is file saved:</TextBlock>
+
+       </Grid>
+</Window>
